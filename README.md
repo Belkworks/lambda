@@ -36,4 +36,4 @@ import Lambda from '@belkworks/lambda'
 
 ## Inspiration
 The reason for the project is to provide an alternative to [Cmdr](https://github.com/evaera/Cmdr), which has a monopoly on command consoles.
-[Zircon](https://github.com/roblox-aurora/zircon) was a promising replacement, but is no longer maintained.
+[Zircon](https://github.com/roblox-aurora/zircon) was a promising candidate, but is no longer maintained.

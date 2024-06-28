@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "build": "rbxtsc",
-    "watch": "rbxtsc -w",
+    "watch": "rbxtsc -w --type=game --rojo=test.project.json",
     "prepublishOnly": "pnpm run build"
   },
   "types": "out/index.d.ts",

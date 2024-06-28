@@ -1,7 +1,8 @@
-export type CommandDefinition = {
+export type CommandDefinition<T> = {
 	name: string | string[];
 	desc?: string;
-	args?: ArgumentDefinition<unknown>[];
+	// args?: ArgumentDefinition<unknown>[];
+	exec: (context: T) => Promise<void> | void;
 };
 
 export type ArgumentDefinition<T> = {
@@ -15,3 +16,10 @@ export type TypeDefinition<T> = {
 	transform: (value: unknown) => T;
 	validate: (value: unknown) => value is T;
 };
+
+export type ContextCreator<Context> = (player: Player) => Promise<Context> | Context
+
+export type ExecutionRequest = {
+	name: string;
+	args: unknown[];
+}

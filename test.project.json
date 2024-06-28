@@ -1,0 +1,25 @@
+{
+	"name": "Lambda",
+	"tree": {
+		"$className": "DataModel",
+		"ReplicatedStorage": {
+			"lambda": {
+				"$path": "out/src"
+			},
+			"rbxts": {
+				"$path": "include",
+				"node_modules": {
+					"$className": "Folder",
+					"@rbxts": {
+						"$path": "node_modules/@rbxts"
+					}
+				}
+			}
+		},
+		"ServerScriptService": {
+			"example": {
+				"$path": "out/example/server"
+			}
+		}
+	}
+}

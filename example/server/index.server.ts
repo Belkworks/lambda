@@ -1,6 +1,8 @@
-import { LambdaServer } from ".";
+import { LambdaServer, defaultContext } from "../../src"
 
-LambdaServer.createCommand({
+const server = new LambdaServer({ createContext: defaultContext })
+
+server.addCommand({
 	name: 'test',
-	execute: ctx => {}
+	exec: context => print(`Hello, ${context.player.Name}!`)
 })
