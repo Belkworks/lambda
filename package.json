@@ -1,16 +1,11 @@
 {
-  "name": "@rbxts/lambda",
-  "version": "1.0.0",
-  "description": "",
-  "main": "out/init.lua",
+  "name": "@belkworks/lambda",
+  "version": "0.0.0",
   "scripts": {
     "build": "rbxtsc",
     "watch": "rbxtsc -w",
     "prepublishOnly": "pnpm run build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "types": "out/index.d.ts",
   "files": [
     "out",
