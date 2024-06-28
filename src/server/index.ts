@@ -1,21 +1,18 @@
-import { CommandDefinition, ContextCreator, ExecutionRequest } from "..";
+import { CommandDefinition, ContextCreator, ExecutionRequest } from "../common/types";
+import { Registry } from "../common/registry";
 
 type LambdaServerOptions<T> = {
 	createContext: ContextCreator<T>;
 }
 
-export const defaultContext: ContextCreator<{player: Player}> = async (player) => ({player})
+export const defaultContext: ContextCreator<{player: Player}> = (player) => ({player})
 
-export class LambdaServer<Context>{
-	private readonly commands: CommandDefinition<Context>[] = []
+export class LambdaServer<Context> {
 	private readonly contextCreator: ContextCreator<Context>
+	private readonly registry = new Registry<Context>()
 
 	constructor(opts: LambdaServerOptions<Context>) {
 		this.contextCreator = opts.createContext
-	}
-
-	private resolveCommand(name: string) {
-		return this.commands.find(c => typeIs(c.name, 'string') ? c.name === name : c.name.includes(name))
 	}
 
 	private async createContext(player: Player) {
@@ -27,16 +24,15 @@ export class LambdaServer<Context>{
 	}
 
 	addCommand(definition: CommandDefinition<Context>) {
-		// TODO: Check for conflicts
-		this.commands.push(definition)
+		this.registry.add(definition)
 	}
 
 	async execute(player: Player, request: ExecutionRequest) {
+		const command = this.registry.resolve(request.name)
+		if (!command) return { success: false }
+
 		const context = await this.createContext(player)
 		if (!context) return { success: false }
-
-		const command = this.resolveCommand(request.name)
-		if (!command) return { success: false }
 
 		// TODO: validate args
 

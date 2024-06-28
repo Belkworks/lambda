@@ -1,5 +1,6 @@
 export type CommandDefinition<T> = {
-	name: string | string[];
+	name: string;
+	aliases?: string[];
 	desc?: string;
 	// args?: ArgumentDefinition<unknown>[];
 	exec: (context: T) => Promise<void> | void;
